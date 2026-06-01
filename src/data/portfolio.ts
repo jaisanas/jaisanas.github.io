@@ -167,6 +167,27 @@ export const workExperiences: WorkExperience[] = [
       },
     ],
   },
+  {
+    company: 'Corgee',
+    role: 'Senior Software Engineer',
+    period: 'July 2021 – December 2023',
+    achievements: [
+      {
+        id: 15,
+        text: 'Built and maintained a cross-platform Flutter mobile application for iOS and Android, delivering a consistent user experience and reducing development overhead through a unified codebase.',
+        category: 'devops',
+        metric: 'iOS & Android',
+        highlight: 'Flutter mobile app',
+      },
+      {
+        id: 16,
+        text: 'Designed and developed a scalable data pipeline for data scientists, integrating with European Open Banking APIs to process and deliver more than 1 million financial transactions daily with high reliability and efficiency.',
+        category: 'cloud',
+        metric: '1M+ tx/day',
+        highlight: 'Open Banking APIs',
+      },
+    ],
+  },
 ]
 
 export const categoryLabels: Record<AchievementCategory, string> = {
