@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 type NavItem =
-  | { type: 'route'; to: string; label: string; end?: boolean }
-  | { type: 'section'; id: string; label: string }
+  | { kind: 'route'; to: string; label: string; end?: boolean }
+  | { kind: 'section'; id: string; label: string }
 
 const navItems: NavItem[] = [
-  { type: 'route', to: '/', label: 'Home', end: true },
-  { type: 'section', id: 'about', label: 'About' },
-  { type: 'section', id: 'experience', label: 'Experiences' },
-  { type: 'section', id: 'highlights', label: 'Highlights' },
-  { type: 'route', to: '/projects', label: 'Projects' },
+  { kind: 'route', to: '/', label: 'Home', end: true },
+  { kind: 'section', id: 'about', label: 'About' },
+  { kind: 'section', id: 'experience', label: 'Experiences' },
+  { kind: 'section', id: 'highlights', label: 'Highlights' },
+  { kind: 'route', to: '/projects', label: 'Projects' },
+  { kind: 'route', to: '/blogs', label: 'Blogs' },
 ]
 
-const sectionNavItems = navItems.filter(
-  (item): item is Extract<NavItem, { type: 'section' }> => item.type === 'section',
-)
+const sectionIds = navItems
+  .filter((item): item is Extract<NavItem, { kind: 'section' }> => item.kind === 'section')
+  .map((item) => item.id)
 
 interface HeaderProps {
   theme: 'light' | 'dark'
@@ -38,7 +39,7 @@ export function Header({ theme, onToggleTheme, isHome }: HeaderProps) {
   useEffect(() => {
     if (!isHome) return
 
-    const sections = sectionNavItems.map((item) => document.getElementById(item.id))
+    const sections = sectionIds.map((id) => document.getElementById(id))
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -74,7 +75,7 @@ export function Header({ theme, onToggleTheme, isHome }: HeaderProps) {
       <nav aria-label="Main">
         <ul className="nav-list">
           {navItems.map((item) =>
-            item.type === 'route' ? (
+            item.kind === 'route' ? (
               <li key={item.to}>
                 <NavLink
                   to={item.to}

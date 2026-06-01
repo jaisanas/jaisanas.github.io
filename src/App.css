@@ -42,6 +42,8 @@
 
 .nav-list {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 0.25rem;
   list-style: none;
   margin: 0;
@@ -695,15 +697,19 @@
 }
 
 @media (max-width: 768px) {
-  .nav-list {
+  .site-header {
     flex-wrap: wrap;
+  }
+
+  .nav-list {
+    order: 3;
+    flex-basis: 100%;
     justify-content: center;
-    gap: 0.15rem;
   }
 
   .nav-link {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.8rem;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.82rem;
   }
 
   .achievement-trigger {

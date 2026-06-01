@@ -88,8 +88,11 @@ function renderStaticBlogPage(page: number): string {
         <nav aria-label="Main">
           <ul class="nav-list">
             <li><a class="nav-link" href="/">Home</a></li>
-            <li><a class="nav-link nav-link--active" href="/blogs">Blog</a></li>
+            <li><a class="nav-link" href="/#about">About</a></li>
+            <li><a class="nav-link" href="/#experience">Experiences</a></li>
+            <li><a class="nav-link" href="/#highlights">Highlights</a></li>
             <li><a class="nav-link" href="/projects">Projects</a></li>
+            <li><a class="nav-link nav-link--active" href="/blogs">Blogs</a></li>
           </ul>
         </nav>
       </header>
