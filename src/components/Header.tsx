@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
-const sectionNavItems = [
-  { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'highlights', label: 'Highlights' },
+type NavItem =
+  | { type: 'route'; to: string; label: string; end?: boolean }
+  | { type: 'section'; id: string; label: string }
+
+const navItems: NavItem[] = [
+  { type: 'route', to: '/', label: 'Home', end: true },
+  { type: 'section', id: 'about', label: 'About' },
+  { type: 'section', id: 'experience', label: 'Experiences' },
+  { type: 'section', id: 'highlights', label: 'Highlights' },
+  { type: 'route', to: '/projects', label: 'Projects' },
 ]
 
-const routeNavItems = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/blogs', label: 'Blog' },
-  { to: '/projects', label: 'Projects' },
-]
+const sectionNavItems = navItems.filter(
+  (item): item is Extract<NavItem, { type: 'section' }> => item.type === 'section',
+)
 
 interface HeaderProps {
   theme: 'light' | 'dark'
@@ -69,33 +73,35 @@ export function Header({ theme, onToggleTheme, isHome }: HeaderProps) {
       </NavLink>
       <nav aria-label="Main">
         <ul className="nav-list">
-          {routeNavItems.map((item) => (
-            <li key={item.to}>
-              <NavLink
-                to={item.to}
-                end={item.end}
-                className={({ isActive }) =>
-                  isActive ? 'nav-link nav-link--active' : 'nav-link'
-                }
-              >
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-          {isHome &&
-            sectionNavItems.map((item) => (
-              <li key={item.id} className="nav-list-section">
+          {navItems.map((item) =>
+            item.type === 'route' ? (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  end={item.end}
+                  className={({ isActive }) =>
+                    isActive ? 'nav-link nav-link--active' : 'nav-link'
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ) : (
+              <li key={item.id}>
                 <button
                   type="button"
                   className={
-                    activeSection === item.id ? 'nav-link nav-link--active' : 'nav-link'
+                    isHome && activeSection === item.id
+                      ? 'nav-link nav-link--active'
+                      : 'nav-link'
                   }
                   onClick={() => scrollTo(item.id)}
                 >
                   {item.label}
                 </button>
               </li>
-            ))}
+            ),
+          )}
         </ul>
       </nav>
       <button

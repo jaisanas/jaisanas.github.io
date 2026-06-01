@@ -694,23 +694,16 @@
   padding: 0 1.25rem 4rem;
 }
 
-.nav-list-section {
-  display: none;
-}
-
-@media (min-width: 900px) {
-  .nav-list-section {
-    display: list-item;
-  }
-}
-
 @media (max-width: 768px) {
-  .nav-list-section {
-    display: none;
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.15rem;
   }
 
-  .nav-list {
-    gap: 0;
+  .nav-link {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
   }
 
   .achievement-trigger {
