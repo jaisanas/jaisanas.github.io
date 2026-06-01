@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { About } from './components/About'
-import { Experience } from './components/Experience'
-import { Header } from './components/Header'
-import { Hero } from './components/Hero'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Layout } from './components/Layout'
+import { BlogsPage } from './pages/BlogsPage'
+import { HomePage } from './pages/HomePage'
+import { ProjectsPage } from './pages/ProjectsPage'
 import './App.css'
 
 function App() {
@@ -19,17 +20,22 @@ function App() {
   }, [theme])
 
   return (
-    <div className="app">
-      <Header theme={theme} onToggleTheme={() => setTheme((t) => (t === 'light' ? 'dark' : 'light'))} />
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-      </main>
-      <footer className="site-footer">
-        <p>Software Engineer · Distributed systems · Cloud · AI</p>
-      </footer>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          element={
+            <Layout
+              theme={theme}
+              onToggleTheme={() => setTheme((t) => (t === 'light' ? 'dark' : 'light'))}
+            />
+          }
+        >
+          <Route index element={<HomePage />} />
+          <Route path="blogs" element={<BlogsPage />} />
+          <Route path="projects" element={<ProjectsPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
