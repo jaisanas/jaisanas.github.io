@@ -188,6 +188,48 @@ export const workExperiences: WorkExperience[] = [
       },
     ],
   },
+  {
+    company: 'Aladin Bank',
+    role: 'Manager, Backend Developer',
+    period: 'July 2021 – December 2023',
+    achievements: [
+      {
+        id: 17,
+        text: 'Designed and developed a scalable transaction service with optimistic locking and idempotency mechanisms to prevent duplicate transactions and ensure data consistency during high concurrent requests.',
+        category: 'devops',
+        metric: 'Idempotency',
+        highlight: 'Optimistic locking',
+      },
+      {
+        id: 18,
+        text: 'Built an operational recovery platform enabling internal administrators to retry, recover, and refund pending or failed transactions, significantly improving transaction resolution efficiency and operational reliability.',
+        category: 'devops',
+        metric: 'Recovery platform',
+        highlight: 'Retry & refund tooling',
+      },
+      {
+        id: 19,
+        text: 'Developed a scalable fee management and fee quota system that enabled internal administrators to configure free transaction quotas, partial fee charges, and dynamic fee policies for users.',
+        category: 'devops',
+        metric: 'Fee management',
+        highlight: 'Dynamic fee policies',
+      },
+      {
+        id: 20,
+        text: 'Led the end-to-end delivery of the fee management and fee quota initiative by defining project timelines, coordinating team members, and breaking down large epics into actionable stories and technical tasks.',
+        category: 'leadership',
+        metric: 'E2E delivery',
+        highlight: 'Project leadership',
+      },
+      {
+        id: 21,
+        text: 'Designed the architecture of the fee management and fee quota system with strong performance considerations, implementing database indexing strategies and Redis caching to optimize fee evaluation latency and scalability under high transaction volume.',
+        category: 'cloud',
+        metric: 'Redis caching',
+        highlight: 'Indexing & caching',
+      },
+    ],
+  },
 ]
 
 export const categoryLabels: Record<AchievementCategory, string> = {
